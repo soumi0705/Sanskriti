@@ -1,2 +1,0 @@
-# Sanskriti
-Team Cheems - Sanskriti
