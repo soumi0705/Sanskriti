@@ -4,7 +4,7 @@ const Web3 = require('web3')
 let metamaskWeb3 = new Web3('http://localhost:8545')
 let account = null
 let airbnbContract
-let airbnbContractAddress = '0x2ab2Ef09f4C993C458D43B6a409a122f8EF47d6a' // Paste Contract address here
+let airbnbContractAddress = '0xF020Fb5339CB5D1745B5508e8061467B9bcb98E6-' // Paste Contract address here
 
 export function web3() {
   return metamaskWeb3

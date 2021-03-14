@@ -2,47 +2,42 @@ pragma solidity ^0.7.4;
 
 contract Sanskriti {
   // INSERT struct Property
-  struct Property {
+  struct Product {
   string name;
   string description;
-  bool isActive; // is property active
+  bool isExist; // is property active
   uint256 price; // per day price in wei (1 ether = 10^18 wei)
   address owner; // Owner of the property
 
-  // Is the property booked on a particular day,
-  // For the sake of simplicity, we assign 0 to Jan 1, 1 to Jan 2 and so on
-  // so isBooked[31] will denote whether the property is booked for Feb 1
-  bool[] isBooked;
 }
 
   // Unique and sequential propertyId for every new property
-  uint256 public propertyId;
+  uint256 public productId;
 
   // mapping of propertyId to Property object
-  mapping(uint256 => Property) public properties;
+  mapping(uint256 => Product) public products;
 
   // INSERT struct Booking
 
-  struct Booking {
+  struct Buyin {
     uint256 propertyId;
-    uint256 checkInDate;
-    uint256 checkoutDate;
+    uint256 quantity;
     address user;
   }
 
   uint256 public bookingId;
 
   // mapping of bookingId to Booking object
-  mapping(uint256 => Booking) public bookings;
+  mapping(uint256 => Buyin) public buyins;
 
   // This event is emitted when a new property is put up for sale
-  event NewProperty (
-    uint256 indexed propertyId
+  event NewProduct (
+    uint256 indexed productId
   );
 
   // This event is emitted when a NewBooking is made
   event NewBooking (
-    uint256 indexed propertyId,
+    uint256 indexed productId,
     uint256 indexed bookingId
   );
 
@@ -52,14 +47,13 @@ contract Sanskriti {
     * @param description Short description of your property
     * @param price Price per day in wei (1 ether = 10^18 wei)
     */
-function rentOutproperty(string memory name, string memory description, uint256 price) public {
-  Property memory property = Property({
+function registerProduct(string memory name, string memory description, uint256 price) public {
+  Product memory products = Product({
     name: name,
     description: description,
-    isActive: true,
+    isExist: true,
     price: price,
     owner: msg.sender,
-    isBooked: new bool[](365)
   });
 
   // Persist `property` object to the "permanent" storage
