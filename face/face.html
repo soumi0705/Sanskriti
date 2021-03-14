@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast KYC</title>
+    <link rel="stylesheet" href="face.css">
+</head>
+<body>
+
+    <div class="nav">
+        <h1>Sanskriti</h1>
+    </div>
+    <canvas id="canvas" width="0" height="0"></canvas>
+    <canvas id="canvas2" width="0" height="0"></canvas>
+    
+    <div class="image">
+        <label for="image" >Upload Your Adhaar scanned copy</label>
+        <input type="file" name="image" id="image" disabled>
+    </div>
+    <div class="video">
+        <h1 id="title">Fast K Y C</h1>
+        <progress id="progress" value="0" max="100"></progress>
+        <h5 id="status">Status : Not Started</h5>
+    <div class="player">
+        <video id="videoID" width="720" height="360" autoplay muted></video>
+        
+    </div>
+    <div class="btn">
+        <button onclick="takepicture()" id="click" disabled>Click</button>
+    </div>
+
+    <div>
+        <h2 id="adhaarId" style="color: #00B6E3; display: none;"></h2>
+        <!-- <button onclick="" id="redirect">DONE!</button> -->
+    </div>
+    </div>
+    
+</body>
+<script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+<script defer src="face-api.min.js"></script>
+<script defer src="face.js"></script>
+<script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
+</html>
