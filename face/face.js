@@ -79,6 +79,7 @@ function adhaar(_image){
         // document.querySelector('#title').innerHTML="Verified!"
         progress.value=100
         status.innerHTML="Status: Verified!"
+        passTrue(adhaarno[0]);
         adhaarId.style.display='inline'
         adhaarId.innerHTML=adhaarno[0]
         status.style.color="#00DE7A"
@@ -86,6 +87,11 @@ function adhaar(_image){
     }).catch(err=>
         console.log("OCR "+err))
 
+}
+
+function passTrue(a){
+    var verf = "IDverified!"
+    window.location.href = "http://localhost:3000?verified=" + verf+"&adhaarNo="+a;
 }
 
 async function test(_pic){
