@@ -2,7 +2,7 @@ pragma solidity ^0.7.4;
 
 contract Sanskriti {
   // INSERT struct Property
-  struct Property {
+  struct Product {
   string name;
   string description;
   string upiID;
@@ -13,14 +13,14 @@ contract Sanskriti {
 }
 
   // Unique and sequential propertyId for every new property
-  uint256 public propertyId;
+  uint256 public productId;
 
   // mapping of propertyId to Property object
-  mapping(uint256 => Property) public properties;
+  mapping(uint256 => Product) public products;
 
   // INSERT struct Booking
 
-  struct Booking {
+  struct Buyin {
     uint256 propertyId;
     uint256 quantity;
     address user;
@@ -29,16 +29,16 @@ contract Sanskriti {
   uint256 public bookingId;
 
   // mapping of bookingId to Booking object
-  mapping(uint256 => Booking) public bookings;
+  mapping(uint256 => Buyin) public buyins;
 
   // This event is emitted when a new property is put up for sale
-  event NewProperty (
-    uint256 indexed propertyId
+  event NewProduct (
+    uint256 indexed productId
   );
 
   // This event is emitted when a NewBooking is made
   event NewBooking (
-    uint256 indexed propertyId,
+    uint256 indexed productId,
     uint256 indexed bookingId
   );
 
