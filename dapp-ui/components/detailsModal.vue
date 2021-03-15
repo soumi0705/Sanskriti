@@ -11,10 +11,16 @@
               <h3>Title: {{propData.name}}</h3>
               <h3>Price: {{propData.price}}</h3>
               <p>Description: {{propData.description}}</p>
-              <div class="row ml-4 p-2">
-                <datepicker :value="startDate" v-model="startDate"></datepicker>
-                <datepicker v-model="endDate"></datepicker>
-              </div>
+              <p>UPI ID: {{propData.upiID}}</p>
+              <div class="form-group">
+                  <label for="quantity">Quantity</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="quantity"
+                    placeholder="Quantity"
+                  />
+                </div>
               <b-button v-on:click="book" class="mr-5 mt-3">
                 <span>Book Now</span>
               </b-button>
@@ -27,13 +33,11 @@
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker';
 
 import { bookProperty, web3 } from "~/plugins/utils";
 
 export default {
   components: {
-    Datepicker
   },
   props: ["propData"],
   data() {
@@ -45,23 +49,14 @@ export default {
     };
   },
   methods: {
-    getDayOfYear(date) {
-      var now = new Date(date);
-      var start = new Date(now.getFullYear(), 0, 0);
-      var diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
-      var oneDay = 1000 * 60 * 60 * 24;
-      var day = Math.floor(diff / oneDay);
-      return day
-    },
+    
     book() {
       // get Start date
-      const startDay = this.getDayOfYear(this.startDate)
-      // get End date
-      const endDay = this.getDayOfYear(this.endDate)
+      const quantity = this.quantity
       // price calculation
-      const totalPrice = web3().utils.toWei(this.propData.price, 'ether') * (endDay - startDay)
+      const totalPrice = this.propData.price*(quantity)
       // call metamask.bookProperty
-      bookProperty(this.propData.id, startDay, endDay, totalPrice)
+      bookProperty(this.propData.id, quantity, totalPrice)
 }
   }
 };

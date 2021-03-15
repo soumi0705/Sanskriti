@@ -5,7 +5,8 @@ contract Sanskriti {
   struct Product {
   string name;
   string description;
-  bool isExist; // is property active
+  string upiID;
+  bool isActive; // is property active
   uint256 price; // per day price in wei (1 ether = 10^18 wei)
   address owner; // Owner of the property
 
@@ -47,13 +48,14 @@ contract Sanskriti {
     * @param description Short description of your property
     * @param price Price per day in wei (1 ether = 10^18 wei)
     */
-function registerProduct(string memory name, string memory description, uint256 price) public {
-  Product memory products = Product({
+function rentOutproperty(string memory name, string memory description,string memory upiID, uint256 price) public {
+  Property memory property = Property({
     name: name,
     description: description,
-    isExist: true,
+    upiID: upiID,
+    isActive: true,
     price: price,
-    owner: msg.sender,
+    owner: msg.sender
   });
 
   // Persist `property` object to the "permanent" storage
@@ -65,10 +67,8 @@ function registerProduct(string memory name, string memory description, uint256 
   /**
    * @dev Make an Airbnb booking
    * @param _propertyId id of the property to rent out
-   * @param checkInDate Check-in date
-   * @param checkoutDate Check-out date
    */
-  function rentProperty(uint256 _propertyId, uint256 checkInDate, uint256 checkoutDate) public payable {
+  function buyProduct(uint256 _propertyId, uint256 quantity) public{
     // Retrieve `property` object from the storage
     Property storage property = properties[_propertyId];
 
@@ -76,25 +76,11 @@ function registerProduct(string memory name, string memory description, uint256 
     // Assert that property is active
     require(
       property.isActive == true,
-      "property with this ID is not active"
-    );
-    // Assert that property is available for the dates
-    for (uint256 i = checkInDate; i < checkoutDate; i++) {
-    if (property.isBooked[i] == true) {
-      // if property is booked on a day, revert the transaction
-      revert("property is not available for the selected dates");
-    }
-  }
-    // Check the customer has sent an amount equal to (pricePerDay * numberOfDays)
-    require(
-    msg.value == property.price * (checkoutDate - checkInDate),
-    "Sent insufficient funds"
-  );
-    // send funds to the owner of the property
-    _sendFunds(property.owner, msg.value);
-
+      "Product with this ID is not available"
+    );    
+  
     // conditions for a booking are satisfied, so make the booking
-    _createBooking(_propertyId, checkInDate, checkoutDate);
+    _createBooking(_propertyId, quantity);
   }
 
   function _sendFunds (address beneficiary, uint256 value) internal {
@@ -103,25 +89,19 @@ function registerProduct(string memory name, string memory description, uint256 
     address(uint160(beneficiary)).transfer(value);
   }
 
-  function _createBooking(uint256 _propertyId, uint256 checkInDate, uint256 checkoutDate) internal {
+  function _createBooking(uint256 _propertyId, uint256 quantity) internal {
     // Create a new booking object
     Booking memory booking = Booking({
       propertyId: _propertyId,
-      checkInDate: checkInDate,
-      checkoutDate: checkoutDate,
+      quantity : quantity,
       user: msg.sender
     });
 
     // persist to storage
     bookings[bookingId] = booking;
 
-      // Retrieve `property` object from the storage
-    Property storage property = properties[_propertyId];
 
-    // Mark the property booked on the requested dates
-    for (uint256 i = checkInDate; i < checkoutDate; i++) {
-      property.isBooked[i] = true;
-    } 
+    
 
     // Emit an event to notify clients
     emit NewBooking(_propertyId, bookingId++);

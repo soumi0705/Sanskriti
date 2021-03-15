@@ -28,6 +28,15 @@
                   />
                 </div>
                 <div class="form-group">
+                  <label for="upiID">UPI ID</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="upiID"
+                    placeholder="Upi ID"
+                  />
+                </div>
+                <div class="form-group">
                   <label for="price">Price</label>
                   <input
                     type="text"
@@ -55,15 +64,15 @@ export default {
     return {
       title: '',
       description: '',
+      upiID: '',
       price: '',
     }
   },
   methods: {
     postAd() {
-      // convert price from ETH to Wei
-      const weiValue = web3().utils.toWei(this.price, 'ether');
+      
       // call metamask.postProperty
-      postProperty(this.title, this.description, weiValue)
+      postProperty(this.title, this.description,this.upiID, this.price)
       
     }
   }

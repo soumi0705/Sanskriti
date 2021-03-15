@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <h1 class="title">Sanskriti</h1>
+      <!--<h1 class="title">Sanskriti</h1>-->
       <!-- <h6 class="subtitle">Places to stay around the world</h6> -->
       
       <div class="row centred">
@@ -11,12 +11,13 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>
 import card from "~/components/card.vue";
 import { fetchAllProperties, setProvider } from "~/plugins/utils"
-import { sampleTx } from "~/plugins/walletConnect"
+
 
 export default {
   components: {
@@ -38,21 +39,62 @@ export default {
     };
   },
   methods: {
-    async sendTx() {
-      await sampleTx()
-    }
   }
 };
 </script>
 
 <style>
 .container {
-  margin: 0 auto;
+  margin: 10vh auto;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: left;
+}
+.margs{
+  margin : 1rem 1rem;
+}
+.logo {
+    height: 35px;
+    margin: 0.55rem;
+}
+.btn-primary{
+  background-color: black;
+  color: white;
+}
+.btn-secondary {
+    color: #fff;
+    background-color: #196FE2;
+    border-color: #6c757d;
+}
+.modal-header h3 {
+    margin-top: 0;
+    color: #394569;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #f7f7f7;
+    background-clip: border-box;
+    border: 1px solid #999999;
+    border-radius: 3px;
+
+    /*background  border #999999 radius 2-4px */
+}
+.navbar-dark{
+  background-color: black;
+}
+h1 {
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    font-size: 40px;
+    font-weight: 600;
+    font-family: "Montserrat";
 }
 
 .title {
