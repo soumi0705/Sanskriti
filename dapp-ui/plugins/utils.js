@@ -4,7 +4,7 @@ const Web3 = require('web3')
 let metamaskWeb3 = new Web3('http://localhost:8545')
 let account = null
 let airbnbContract
-let airbnbContractAddress = '0x2ab2Ef09f4C993C458D43B6a409a122f8EF47d6a' // Paste Contract address here
+let airbnbContractAddress = '0xb059F2833B1339ff34F947aa436Bce2Bf204e7Bb' // Paste Contract address here
 
 export function web3() {
   return metamaskWeb3
@@ -42,25 +42,24 @@ return airbnbContract
 }
 
 
-export async function postProperty(name, description, price) {
+export async function postProperty(name, description,upiID, price) {
   // TODO: call Airbnb.rentOutproperty
   const prop = await getAirbnbContract()
-  .methods.rentOutproperty(name, description, price)
+  .methods.rentOutproperty(name, description,upiID, price)
   .send({
     from: account[0],
   })
-  alert('Property Posted Successfully')
+  alert('Product Posted Successfully')
 }
 
-export async function bookProperty(spaceId, checkInDate, checkOutDate, totalPrice) {
+export async function bookProperty(spaceId, quantity, totalPrice) {
   // TODO: call Airbnb.rentSpace
   const prop = await getAirbnbContract()
-  .methods.rentProperty(spaceId, checkInDate, checkOutDate)
+  .methods.buyProduct(spaceId, quantity)
   .send({
     from: account[0],
-    value: totalPrice,
   })
-  alert('Property Booked Successfully')
+  alert('Product Booked Successfully pay '+totalPrice+' to the given UPI ID')
 }
 
 export async function fetchAllProperties() {
@@ -77,7 +76,8 @@ for (let i = 0; i < propertyId; i++) {
     id: i,
     name: p.name,
     description: p.description,
-    price: metamaskWeb3.utils.fromWei(p.price),
+    upiID : p.upiID,
+    price: p.price,
   })
 }
 return properties

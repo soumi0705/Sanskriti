@@ -19,7 +19,6 @@
 <script>
 import PropertyForm from "~/components/propertyForm.vue";
 import { accountAddress, setProvider, web3 } from "~/plugins/utils";
-import { initWalletConnect } from "~/plugins/walletConnect";
 
 export default {
   data() {

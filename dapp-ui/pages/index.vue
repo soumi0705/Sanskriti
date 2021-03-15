@@ -16,7 +16,6 @@
 <script>
 import card from "~/components/card.vue";
 import { fetchAllProperties, setProvider } from "~/plugins/utils"
-import { sampleTx } from "~/plugins/walletConnect"
 
 export default {
   components: {
@@ -38,9 +37,6 @@ export default {
     };
   },
   methods: {
-    async sendTx() {
-      await sampleTx()
-    }
   }
 };
 </script>
