@@ -47,7 +47,9 @@ export default {
       if(verf == "IDverified!" && regex.exec(a_no)){
         this.showModal = !this.showModal;
       }
-      
+      else{
+        window.location.href = "http://localhost:5501/face.html";
+      }
     },
   }
 };
