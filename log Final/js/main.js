@@ -1,6 +1,6 @@
 // register Js
 const forminfo=document.querySelector("#forminfo")
-const KYCLink ="" // local host address kyc link
+const KYCLink ="http://localhost:3000/" // local host address kyc link
 forminfo.addEventListener('submit',event=>{
     event.preventDefault()
     console.log(forminfo)

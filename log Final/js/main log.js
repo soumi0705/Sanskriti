@@ -1,5 +1,5 @@
 const login= document.querySelector("#login")
-const dashboardLink="" // localhost server link
+const dashboardLink="http://localhost:3000/" // localhost server link
 // default cred
 // email  = admin@admin.com
 // pass = admin

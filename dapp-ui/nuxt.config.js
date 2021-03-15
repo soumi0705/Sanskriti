@@ -15,7 +15,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/sanskriti logo.ico' },
       { rel: 'stylesheet', href:'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap'},
       { rel: 'stylesheet', href:'/style.css'},
-    ]
+    ],
   },
   /*
   ** Customize the progress-bar color
