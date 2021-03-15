@@ -7,7 +7,7 @@ contract Sanskriti {
   string description;
   string upiID;
   bool isActive; // is property active
-  uint256 price; // per day price in wei (1 ether = 10^18 wei)
+  uint256 price; 
   address owner; // Owner of the property
 
 }
