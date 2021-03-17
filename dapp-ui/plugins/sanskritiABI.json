@@ -1,10 +1,42 @@
 {
   "abi":  [
     {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "bookingId",
+          "type": "uint256"
+        }
+      ],
+      "name": "NewBuyin",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        }
+      ],
+      "name": "NewProduct",
+      "type": "event"
+    },
+    {
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "_propertyId",
+          "name": "_productId",
           "type": "uint256"
         },
         {
@@ -19,81 +51,8 @@
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_propertyId",
-          "type": "uint256"
-        }
-      ],
-      "name": "markPropertyAsInactive",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "propertyId",
-          "type": "uint256"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "bookingId",
-          "type": "uint256"
-        }
-      ],
-      "name": "NewBooking",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "propertyId",
-          "type": "uint256"
-        }
-      ],
-      "name": "NewProperty",
-      "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "description",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "upiID",
-          "type": "string"
-        },
-        {
-          "internalType": "uint256",
-          "name": "price",
-          "type": "uint256"
-        }
-      ],
-      "name": "rentOutproperty",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
       "inputs": [],
-      "name": "bookingId",
+      "name": "buyinId",
       "outputs": [
         {
           "internalType": "uint256",
@@ -112,11 +71,11 @@
           "type": "uint256"
         }
       ],
-      "name": "bookings",
+      "name": "buyins",
       "outputs": [
         {
           "internalType": "uint256",
-          "name": "propertyId",
+          "name": "productId",
           "type": "uint256"
         },
         {
@@ -137,11 +96,37 @@
       "inputs": [
         {
           "internalType": "uint256",
+          "name": "_productId",
+          "type": "uint256"
+        }
+      ],
+      "name": "markPropertyAsInactive",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "productId",
+      "outputs": [
+        {
+          "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
       ],
-      "name": "properties",
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "products",
       "outputs": [
         {
           "internalType": "string",
@@ -178,16 +163,31 @@
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "propertyId",
-      "outputs": [
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "upiID",
+          "type": "string"
+        },
         {
           "internalType": "uint256",
-          "name": "",
+          "name": "price",
           "type": "uint256"
         }
       ],
-      "stateMutability": "view",
+      "name": "rentOutproperty",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     }
   ]
