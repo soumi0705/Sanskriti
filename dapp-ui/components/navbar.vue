@@ -48,7 +48,7 @@ export default {
         this.showModal = !this.showModal;
       }
       else{
-        window.location.href = "http://localhost:5501/face.html";
+        window.location.href = "http://localhost:5000/faceID";
       }
     },
   }
