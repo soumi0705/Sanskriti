@@ -3,8 +3,8 @@ const Web3 = require('web3')
 
 let metamaskWeb3 = new Web3('http://localhost:8545')
 let account = null
-let airbnbContract
-let airbnbContractAddress = '0xB9ad9B0e046aDC38e9C9B8BA308dC77B7e8E3E23' // Paste Contract address here
+let sanskritiContract
+let sanskritiContractAddress = '0xB9ad9B0e046aDC38e9C9B8BA308dC77B7e8E3E23' // Paste Contract address here
 
 export function web3() {
   return metamaskWeb3
@@ -32,19 +32,16 @@ export async function setProvider() {
 }
 
 
-function getAirbnbContract() {
+function getSanskritiContract() {
   // TODO: create and return contract Object
-  airbnbContract =
-  airbnbContract ||
-  new metamaskWeb3.eth.Contract(SansABI.abi, airbnbContractAddress)
-return airbnbContract
-
+  sanskritiContract =  airbnbContract ||  new metamaskWeb3.eth.Contract(SansABI.abi, sanskritiContractAddress)
+return sanskritiContract
 }
 
 
-export async function postProperty(name, description,upiID, price) {
+export async function postProduct(name, description,upiID, price) {
   // TODO: call Airbnb.rentOutproperty
-  const prop = await getAirbnbContract()
+  const prop = await getSanskritiContract()
   .methods.rentOutproperty(name, description,upiID, price)
   .send({
     from: account[0],
