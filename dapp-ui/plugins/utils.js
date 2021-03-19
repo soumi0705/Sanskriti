@@ -4,7 +4,7 @@ const Web3 = require('web3')
 let metamaskWeb3 = new Web3('http://localhost:8545')
 let account = null
 let sanskritiContract
-let sanskritiContractAddress = '0xEF755e2e0bE54f430f5669Ea75970EdA4d7afB8b' // Paste Contract address here
+let sanskritiContractAddress = '0xAbe513909bc712816A90b05804B02049e3D2eaDb' // Paste Contract address here
 
 export function web3() {
   return metamaskWeb3
