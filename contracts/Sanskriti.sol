@@ -21,12 +21,12 @@ contract Sanskriti {
   // INSERT struct Booking
 
   struct Buyin {
-    uint256 propertyId;
+    uint256 productId;
     uint256 quantity;
     address user;
   }
 
-  uint256 public bookingId;
+  uint256 public buyinId;
 
   // mapping of bookingId to Booking object
   mapping(uint256 => Buyin) public buyins;
@@ -39,7 +39,7 @@ contract Sanskriti {
   // This event is emitted when a NewBooking is made
   event NewBooking (
     uint256 indexed productId,
-    uint256 indexed bookingId
+    uint256 indexed buyinId
   );
 
   /**
@@ -48,8 +48,8 @@ contract Sanskriti {
     * @param description Short description of your property
     * @param price Price per day in wei (1 ether = 10^18 wei)
     */
-function rentOutproperty(string memory name, string memory description,string memory upiID, uint256 price) public {
-  Property memory property = Property({
+function listProduct(string memory name, string memory description,string memory upiID, uint256 price) public {
+  Product memory product = Product({
     name: name,
     description: description,
     upiID: upiID,
@@ -59,28 +59,28 @@ function rentOutproperty(string memory name, string memory description,string me
   });
 
   // Persist `property` object to the "permanent" storage
-  properties[propertyId] = property;
+  products[productId] = product;
 
   // emit an event to notify the clients
-  emit NewProperty(propertyId++);
+  emit NewProduct(productId++);
 }
   /**
    * @dev Make an Airbnb booking
-   * @param _propertyId id of the property to rent out
+   * @param _productId id of the property to rent out
    */
-  function buyProduct(uint256 _propertyId, uint256 quantity) public{
+  function buyProduct(uint256 _productId, uint256 quantity) public{
     // Retrieve `property` object from the storage
-    Property storage property = properties[_propertyId];
+    Product storage product = products[_productId];
 
     // Assert that property is active
     // Assert that property is active
     require(
-      property.isActive == true,
+      product.isActive == true,
       "Product with this ID is not available"
     );    
   
     // conditions for a booking are satisfied, so make the booking
-    _createBooking(_propertyId, quantity);
+    _createBuyin(_productId, quantity);
   }
 
   function _sendFunds (address beneficiary, uint256 value) internal {
@@ -89,33 +89,38 @@ function rentOutproperty(string memory name, string memory description,string me
     address(uint160(beneficiary)).transfer(value);
   }
 
-  function _createBooking(uint256 _propertyId, uint256 quantity) internal {
+  function _createBuyin(uint256 _productId, uint256 quantity) internal {
     // Create a new booking object
-    Booking memory booking = Booking({
-      propertyId: _propertyId,
+    Buyin memory buyin = Buyin({
+      productId: _productId,
       quantity : quantity,
       user: msg.sender
     });
 
     // persist to storage
-    bookings[bookingId] = booking;
+    buyins[buyinId] = buyin;
 
 
     
 
     // Emit an event to notify clients
-    emit NewBooking(_propertyId, bookingId++);
+    emit NewBooking(_productId, buyinId++);
   }
 
   /**
    * @dev Take down the property from the market
-   * @param _propertyId Property ID
+   * @param _productId Property ID
    */
-  function markPropertyAsInactive(uint256 _propertyId) public {
+  function markProduct(uint256 _productId) public {
     require(
-      properties[_propertyId].owner == msg.sender,
+      products[_productId].owner == msg.sender,
       "THIS IS NOT YOUR PROPERTY"
     );
-    properties[_propertyId].isActive = false;
+    if(products[_productId].isActive==true){
+        products[_productId].isActive = false;
+    }
+    else{
+        products[_productId].isActive = true;
+    }
   }
 }
