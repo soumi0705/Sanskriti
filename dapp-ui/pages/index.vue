@@ -1,8 +1,6 @@
 <template>
   <div class="container">
     <div>
-      <!--<h1 class="title">Sanskriti</h1>-->
-      <!-- <h6 class="subtitle">Places to stay around the world</h6> -->
       
       <div class="row centred">
         <div class="m-3" v-for="post in posts">
@@ -16,7 +14,7 @@
 
 <script>
 import card from "~/components/card.vue";
-import { fetchAllProperties, setProvider } from "~/plugins/utils"
+import { fetchAllProducts, setProvider } from "~/plugins/utils"
 
 
 export default {
@@ -29,8 +27,8 @@ export default {
 
 
     // fetch all properties
-    const properties = await fetchAllProperties()
-    this.posts = properties
+    const products = await fetchAllProducts()
+    this.posts = products
   },
   data() {
     return {

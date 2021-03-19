@@ -4,7 +4,7 @@ const Web3 = require('web3')
 let metamaskWeb3 = new Web3('http://localhost:8545')
 let account = null
 let sanskritiContract
-let sanskritiContractAddress = '0xB9ad9B0e046aDC38e9C9B8BA308dC77B7e8E3E23' // Paste Contract address here
+let sanskritiContractAddress = '0xEF755e2e0bE54f430f5669Ea75970EdA4d7afB8b' // Paste Contract address here
 
 export function web3() {
   return metamaskWeb3
@@ -34,7 +34,7 @@ export async function setProvider() {
 
 function getSanskritiContract() {
   // TODO: create and return contract Object
-  sanskritiContract =  airbnbContract ||  new metamaskWeb3.eth.Contract(SansABI.abi, sanskritiContractAddress)
+  sanskritiContract =  sanskritiContract ||  new metamaskWeb3.eth.Contract(SansABI.abi, sanskritiContractAddress)
 return sanskritiContract
 }
 
@@ -42,34 +42,34 @@ return sanskritiContract
 export async function postProduct(name, description,upiID, price) {
   // TODO: call Airbnb.rentOutproperty
   const prop = await getSanskritiContract()
-  .methods.rentOutproperty(name, description,upiID, price)
+  .methods.listProduct(name, description,upiID, price)
   .send({
     from: account[0],
   })
   alert('Product Posted Successfully')
 }
 
-export async function bookProperty(spaceId, quantity, totalPrice) {
+export async function buyProduct(pId, quantity, totalPrice) {
   // TODO: call Airbnb.rentSpace
-  const prop = await getAirbnbContract()
-  .methods.buyProduct(spaceId, quantity)
+  const prop = await getSanskritiContract()
+  .methods.buyProduct(pId, quantity)
   .send({
     from: account[0],
   })
   alert('Product Booked Successfully pay '+totalPrice+' to the given UPI ID')
 }
 
-export async function fetchAllProperties() {
+export async function fetchAllProducts() {
   // TODO: call Airbnb.propertyId
   
-  const propertyId = await getAirbnbContract()
-  .methods.propertyId()
+  const productId = await getSanskritiContract()
+  .methods.productId()
   .call()
 // iterate till property Id
-const properties = []
-for (let i = 0; i < propertyId; i++) {
-  const p = await airbnbContract.methods.properties(i).call()
-  properties.push({
+const products = []
+for (let i = 0; i < productId; i++) {
+  const p = await sanskritiContract.methods.products(i).call()
+  products.push({
     id: i,
     name: p.name,
     description: p.description,
@@ -77,6 +77,6 @@ for (let i = 0; i < propertyId; i++) {
     price: p.price,
   })
 }
-return properties
+return products
 // push each object to properties array
 }

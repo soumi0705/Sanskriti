@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { postProperty, web3 } from "~/plugins/utils";
+import {  postProduct, web3 } from "~/plugins/utils";
 
 export default {
   components: {},
@@ -72,7 +72,7 @@ export default {
     postAd() {
       
       // call metamask.postProperty
-      postProperty(this.title, this.description,this.upiID, this.price)
+       postProduct(this.title, this.description,this.upiID, this.price)
       
     }
   }

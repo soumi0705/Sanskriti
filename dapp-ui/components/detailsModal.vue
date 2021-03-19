@@ -21,7 +21,7 @@
                     placeholder="Quantity"
                   />
                 </div>
-              <b-button v-on:click="book" class="mr-5 mt-3">
+              <b-button v-on:click="buy" class="mr-5 mt-3">
                 <span>Book Now</span>
               </b-button>
             </slot>
@@ -34,7 +34,7 @@
 
 <script>
 
-import { bookProperty, web3 } from "~/plugins/utils";
+import { buyProduct, web3 } from "~/plugins/utils";
 
 export default {
   components: {
@@ -50,13 +50,13 @@ export default {
   },
   methods: {
     
-    book() {
+    buy() {
       // get Start date
       const quantity = this.quantity
       // price calculation
       const totalPrice = this.propData.price*(quantity)
       // call metamask.bookProperty
-      bookProperty(this.propData.id, quantity, totalPrice)
+      buyProduct(this.propData.id, quantity, totalPrice)
 }
   }
 };
