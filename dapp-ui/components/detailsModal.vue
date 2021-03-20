@@ -12,18 +12,29 @@
               <h3>Price: {{propData.price}}</h3>
               <p>Description: {{propData.description}}</p>
               <p>UPI ID: {{propData.upiID}}</p>
-              <div class="form-group">
-                  <label for="quantity">Quantity</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="quantity"
-                    placeholder="Quantity"
-                  />
-                </div>
-              <b-button v-on:click="buy" class="mr-5 mt-3">
-                <span>Book Now</span>
-              </b-button>
+              
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="quantity"
+                      placeholder="Quantity"
+                    /></div>
+              <!-- <form name="buyin" v-on:submit="buy"> -->
+                <p>Please select your payment method:</p>
+                <input type="radio" class="radios" id="UPI" v-model="p_mode" name="p_mode" value="f">
+                <label for="UPI">UPI-INR</label><br>
+                <input type="radio" class="radios" id="ETH" v-model="p_mode" name="p_mode" value="t">
+                <label for="ETH">ETH</label><br>
+                <b-button type="submit" v-on:click="buy" class="mr-5 mt-3">
+                  <span>Book Now</span>
+                </b-button>
+                <b-button type="submit" v-on:click="inactive" class="mr-5 mt-3">
+                  <span>Mark Unavailable</span>
+                </b-button>
+              <!-- </form> -->
+              
             </slot>
           </div>
         </div>
@@ -34,7 +45,7 @@
 
 <script>
 
-import { buyProduct, web3 } from "~/plugins/utils";
+import { buyProduct, web3, markProduct } from "~/plugins/utils";
 
 export default {
   components: {
@@ -51,12 +62,18 @@ export default {
   methods: {
     
     buy() {
+      const p_mode = this.p_mode;
       // get Start date
       const quantity = this.quantity
       // price calculation
       const totalPrice = this.propData.price*(quantity)
       // call metamask.bookProperty
-      buyProduct(this.propData.id, quantity, totalPrice)
+      buyProduct(this.propData.id, quantity, totalPrice, p_mode)
+},
+
+    inactive() {
+      
+      markProduct(this.propData.id)
 }
   }
 };

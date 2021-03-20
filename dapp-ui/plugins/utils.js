@@ -2,6 +2,7 @@ import SansABI from './sanskritiABI'
 const Web3 = require('web3')
 
 let metamaskWeb3 = new Web3('http://localhost:8545')
+//let metamaskWeb3 = new Web3('https://rpc-mumbai.matic.today')
 let account = null
 let sanskritiContract
 let sanskritiContractAddress = '0x8bF81B3F5DD785B9807970a3d28e30904a7a692E' // Paste Contract address here
@@ -50,15 +51,29 @@ export async function postProduct(name, description,upiID, price) {
   location.reload();
 }
 
-export async function buyProduct(pId, quantity, totalPrice) {
+export async function buyProduct(pId, quantity, totalPrice, pmode) {
   // TODO: call Airbnb.rentSpace
-  const prop = await getSanskritiContract()
-  .methods.buyProduct(pId, quantity)
-  .send({
-    from: account[0],
-  })
-  alert('Product Booked Successfully pay '+totalPrice+' to the given UPI ID')
-}
+  if(pmode == "t"){
+    //web3().utils.toWei(this.propData.price, 'ether')
+    totalPrice = (metamaskWeb3.utils.toWei((totalPrice/134017).toString(), 'ether'))
+    console.log(totalPrice);
+    const prop = await getSanskritiContract()
+    .methods.buyProduct(pId, quantity, pmode)
+    .send({
+      from: account[0],
+      value: totalPrice,
+    })
+    alert('Product Bought Successfully')
+    }
+  if(pmode == "f"){
+    const prop = await getSanskritiContract()
+    .methods.buyProduct(pId, quantity, pmode)
+    .send({
+      from: account[0],
+    })
+    alert('Product Booked Successfully pay '+totalPrice+' to the given UPI ID')
+    }
+  }
 
 export async function fetchAllProducts() {
   // TODO: call Airbnb.propertyId
@@ -76,8 +91,17 @@ for (let i = 0; i < productId; i++) {
     description: p.description,
     upiID : p.upiID,
     price: p.price,
+    isActive: p.isActive,
   })
 }
 return products
 // push each object to properties array
+}
+
+export async function markProduct(pId){
+  const prop = await getSanskritiContract()
+  .methods.markProduct(pId)
+  .send({
+    from: account[0],
+  })
 }

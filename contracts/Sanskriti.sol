@@ -24,6 +24,7 @@ contract Sanskriti {
     uint256 productId;
     uint256 quantity;
     address user;
+    string pmode;
   }
 
   uint256 public buyinId;
@@ -67,8 +68,9 @@ function listProduct(string memory name, string memory description,string memory
   /**
    * @dev Make an Airbnb booking
    * @param _productId id of the property to rent out
+   * @param _pmode id of the property to rent out
    */
-  function buyProduct(uint256 _productId, uint256 quantity) public{
+  function buyProduct(uint256 _productId, uint256 quantity, string calldata _pmode) public payable{
     // Retrieve `property` object from the storage
     Product storage product = products[_productId];
 
@@ -76,11 +78,21 @@ function listProduct(string memory name, string memory description,string memory
     // Assert that property is active
     require(
       product.isActive == true,
-      "Product with this ID is not available"
+      "Product is not available"
     );    
-  
+    if(keccak256(bytes(_pmode)) == keccak256(bytes("t"))){
+    //   require(
+    //     msg.value == parseInt(toWei(((product.price * (quantity))/133999).toString(), 'ether')),
+    //     "Sent insufficient funds"
+    //   );
+      _sendFunds(product.owner, msg.value);
+      _createBuyin(_productId, quantity, _pmode);
+    }
     // conditions for a booking are satisfied, so make the booking
-    _createBuyin(_productId, quantity);
+    if(keccak256(bytes(_pmode)) == keccak256(bytes("f"))){
+      _createBuyin(_productId, quantity, _pmode);
+    }
+    
   }
 
   function _sendFunds (address beneficiary, uint256 value) internal {
@@ -89,12 +101,13 @@ function listProduct(string memory name, string memory description,string memory
     address(uint160(beneficiary)).transfer(value);
   }
 
-  function _createBuyin(uint256 _productId, uint256 quantity) internal {
+  function _createBuyin(uint256 _productId, uint256 quantity, string calldata _pmode) internal {
     // Create a new booking object
     Buyin memory buyin = Buyin({
       productId: _productId,
       quantity : quantity,
-      user: msg.sender
+      user: msg.sender,
+      pmode : _pmode 
     });
 
     // persist to storage
@@ -114,7 +127,7 @@ function listProduct(string memory name, string memory description,string memory
   function markProduct(uint256 _productId) public {
     require(
       products[_productId].owner == msg.sender,
-      "THIS IS NOT YOUR PROPERTY"
+      "THIS IS NOT YOUR PRODUCT"
     );
     if(products[_productId].isActive==true){
         products[_productId].isActive = false;

@@ -6,6 +6,7 @@
         <h5 class="card-title">{{propObject.name}}</h5>
         <h4 class="card-title">₹{{propObject.price}}/-</h4>
         <p class="card-text">Description: {{propObject.description}}</p>
+        <p class="card-text">Available: {{propObject.isActive}}</p>
         <button class="btn btn-primary" v-on:click="displayDetails">View</button>
       </div>
     </div>
@@ -30,6 +31,12 @@ export default {
   methods: {
     displayDetails() {
       this.showModal = !this.showModal;
+    },
+    turnInactive(){
+      var avail = this.propObject.isActive;
+      if(avail == "false"){
+        
+      }
     }
   }
 };
