@@ -11,11 +11,16 @@
           "internalType": "uint256",
           "name": "quantity",
           "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_pmode",
+          "type": "string"
         }
       ],
       "name": "buyProduct",
       "outputs": [],
-      "stateMutability": "nonpayable",
+      "stateMutability": "payable",
       "type": "function"
     },
     {
@@ -128,6 +133,11 @@
           "internalType": "address",
           "name": "user",
           "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "pmode",
+          "type": "string"
         }
       ],
       "stateMutability": "view",
