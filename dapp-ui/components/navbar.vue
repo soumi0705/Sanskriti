@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
      
       <img :src="Logo" class="logo"/>
        <h1>Sanskriti</h1>
@@ -8,12 +8,12 @@
         <li class="nav-item">
           <b-button v-on:click="toggle" class="margs">
             <span>Register Your Product</span>
-            
           </b-button>
         </li>
       </ul>
+      
     </nav>
-
+ 
     <property-form v-if="showModal">
       <h3 slot="header">Register Product</h3>
     </property-form>

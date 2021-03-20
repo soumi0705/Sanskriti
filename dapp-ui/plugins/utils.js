@@ -46,7 +46,8 @@ export async function postProduct(name, description,upiID, price) {
   .send({
     from: account[0],
   })
-  alert('Product Posted Successfully')
+  // alert('Product Posted Successfully')
+  location.reload();
 }
 
 export async function buyProduct(pId, quantity, totalPrice) {

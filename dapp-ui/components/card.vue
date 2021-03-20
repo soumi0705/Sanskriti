@@ -3,8 +3,8 @@
     <div class="card" style="width: 18rem;">
       <div class="card-body">
         <img class="card-img-top" src="~/assets/default.jpg" alt="Card image cap" />
-        <h4 class="card-title">Price: {{propObject.price}} Rs</h4>
-        <h5 class="card-title">Name: {{propObject.name}}</h5>
+        <h5 class="card-title">{{propObject.name}}</h5>
+        <h4 class="card-title">₹{{propObject.price}}/-</h4>
         <p class="card-text">Description: {{propObject.description}}</p>
         <button class="btn btn-primary" v-on:click="displayDetails">View</button>
       </div>

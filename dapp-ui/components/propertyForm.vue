@@ -39,10 +39,11 @@
                 <div class="form-group">
                   <label for="price">Price</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     v-model="price"
                     placeholder="Price"
+                    
                   />
                 </div>
                 <button v-on:click="postAd" class="btn btn-primary float-right">Submit</button>
