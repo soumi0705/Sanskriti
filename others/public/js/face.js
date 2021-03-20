@@ -79,19 +79,31 @@ function adhaar(_image){
         // document.querySelector('#title').innerHTML="Verified!"
         progress.value=100
         status.innerHTML="Status: Verified!"
-        passTrue(adhaarno[0]);
         adhaarId.style.display='inline'
         adhaarId.innerHTML=adhaarno[0]
         status.style.color="#00DE7A"
+        window.scrollTo(0,document.body.scrollHeight)
+        passTrue(adhaarno[0]);
 
     }).catch(err=>
-        console.log("OCR "+err))
+        {console.log("OCR "+err)
+        return retry()
+    })
 
+}
+
+function retry(){
+    progress.value=0
+        status.innerHTML="Status : Retry"
+        status.style.color="red"
+        webcam.start()
+        click.disabled=false
+        click.style.display='inline'
 }
 
 function passTrue(a){
     var verf = "IDverified!"
-    window.location.href = "http://localhost:3000?verified=" + verf+"&adhaarNo="+a;
+    setTimeout(()=> {window.location.href = "http://localhost:3000?verified=" + verf+"&adhaarNo="+a},2000)
 }
 
 async function test(_pic){
@@ -122,26 +134,18 @@ async function test(_pic){
         // document.querySelector('#title').innerHTML="Adhaar verification (50%)"
         console.log("adhaar detect...")
         return adhaar(image);
-        return console.log("verified!")
+        // return console.log("verified!")
     }
     else{
-        progress.value=0
-        status.innerHTML="Status : Retry"
-        status.style.color="red"
-        webcam.start()
-        click.disabled=false
-        click.style.display='inline'
+        retry()
+
     }
 
     }
     catch(err){
-        progress.value=0
-        status.innerHTML="Status : Retry"
-        status.style.color="red"
-        webcam.start()
-        click.disabled=false
-        click.style.display='inline'
+     
         console.log('try again '+err)
+        return retry()
     }
     // const a = faceMatcher.findBestMatch(detect_ss)
     // console.log(a)
