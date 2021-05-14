@@ -6,6 +6,8 @@
 # The above will handle all files NOT found below
 #
 *.css linguist-detectable=false
+*.ejs linguist-detectable=false
+*.vue linguist-detectable=false
 #
 ## Documents
 #
