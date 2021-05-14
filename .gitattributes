@@ -8,6 +8,7 @@
 *.css linguist-detectable=false
 *.ejs linguist-detectable=false
 *.vue linguist-detectable=false
+*.js linguist-detectable=false
 #
 ## Documents
 #
