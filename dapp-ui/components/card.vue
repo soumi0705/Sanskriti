@@ -1,13 +1,13 @@
 <template>
   <div class = "bd-dark">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <img class="card-img-top" src="~/assets/default.jpg" alt="Card image cap" />
-        <h5 class="card-title">{{propObject.name}}</h5>
-        <h4 class="card-title">₹{{propObject.price}}/-</h4>
-        <p class="card-text">Description: {{propObject.description}}</p>
+    <div class="card shadow-md" style="width: 18rem;">
+      <div class="card-body ">
+        <img class="card-img-top imgcss" src="~/assets/default.jpg" alt="Card image cap" />
+        <h5 class="card-title namecss">{{propObject.name}}</h5>
+        <p class="card-text descss">Description: {{propObject.description}}</p>
+        <h4 class="card-title pricecss">₹{{propObject.price}}/-</h4>
         <p class="card-text">Available: {{propObject.isActive}}</p>
-        <button class="btn btn-primary" v-on:click="displayDetails">View</button>
+        <button class="btn btn-primary" v-on:click="displayDetails">Buy Now</button>
       </div>
     </div>
     <details-modal v-if="showModal" :propData="propObject">

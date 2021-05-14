@@ -31,7 +31,7 @@
                   <span>Book Now</span>
                 </b-button>
                 <b-button type="submit" v-on:click="inactive" class="mr-5 mt-3">
-                  <span>Mark Unavailable</span>
+                  <span>Change Availability</span>
                 </b-button>
               <!-- </form> -->
               

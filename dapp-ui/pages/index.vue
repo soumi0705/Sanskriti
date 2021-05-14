@@ -62,6 +62,7 @@ input .radios{
   justify-content: center;
   align-items: center;
   text-align: left;
+  
 }
 .margs{
   margin : 1rem 1rem;
@@ -71,13 +72,29 @@ input .radios{
     margin: 0.55rem;
 }
 .btn-primary{
-  background-color: black;
+  background-color: #1D4ED8;
   color: white;
 }
+.pricecss{
+  font-size: 30px;
+      color: #2563EB;
+
+}
+.namecss{
+  color: rgb(90, 90, 90);
+  padding:5px 0 ;
+}
+.imgcss{
+  border:2px #E5E7EB solid;
+}
+.descss{
+    color: #777;
+    font-size: 15px;
+}
 .btn-secondary {
-    color: #fff;
-    background-color: #196FE2;
-    border-color: #6c757d;
+    color: #2563EB;
+    background-color:#f7f7f7 ;
+    border-color: #fff;
 }
 .modal-header h3 {
     margin-top: 0;
@@ -89,16 +106,37 @@ input .radios{
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #f7f7f7;
+    background-color: #F3F4F6;
     background-clip: border-box;
-    border: 1px solid #999999;
-    border-radius: 3px;
+    border: 1px solid #E5E7EB;
+    border-radius: 4px;
 
     /*background  border #999999 radius 2-4px */
 }
 .navbar-dark{
-  background-color: black;
+  background-color: #3B82F6;
+    /* background-image: linear-gradient(to right,#1ec7ff , #2F80ED ); */
+
 }
+
+/*tailwind*/
+
+.shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+/*/*//* */
 h1 {
     color: #fff;
     margin: 0;

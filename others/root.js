@@ -12,6 +12,9 @@ router.get("/",function(req,res){
 router.get("/register",function(req,res){
     res.render("reg");
 });
+router.get("/payINR",function(req,res){
+    res.render("payment");
+});
 // router.get("/townships",function(req,res){
 //     res.render("townships");
 // });

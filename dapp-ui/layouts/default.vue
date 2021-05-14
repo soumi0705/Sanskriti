@@ -77,7 +77,10 @@ html {
     display: block;
     padding: 0 10px;
     margin-right: 1%;
-    
+    background-color: #F9FAFB;
+     --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    border-radius: 2px;
 }
  .crypto:hover {
     background-color: #f0f0f0;
@@ -102,28 +105,32 @@ html {
 .search {
     width: 50%;
     margin-left: auto;
-    margin-top: 5vh;
+    margin-top: 1vh;
     margin-right: auto;
 }
 
 .search input[type="text"]{
   width: 80%;
-  background-color: #F3F4F6;
-  border: 2px #D1D5DB solid;
+  background-color: #f1f1f1;
+  border: 2px #F3F4F6 solid;
+   --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   padding-left: 10px;
   font-size: 14px;
-  border-radius: 40px;
+  border-radius: 2px;
 }
 
 .search input:focus { outline: none; }
 
 .search input[type="submit"]{
-  background-color: #111827;
+   background-color: #3B82F6;
+   
+   
   font-size: 14px;
   color: #fff;
+  border:2px solid #3B82F6;
+  width: 10%;
   font-size: 14px;
-  border-radius: 40px;
-
-
+  border-radius: 2px;
 }
 </style>

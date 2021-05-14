@@ -103,7 +103,7 @@ function retry(){
 
 function passTrue(a){
     var verf = "IDverified!"
-    setTimeout(()=> {window.location.href = "http://localhost:3000?verified=" + verf+"&adhaarNo="+a},2000)
+    setTimeout(()=> {window.location.href = "http://localhost:3000?verified=" + verf+"&adhaarNo="+a},4000)
 }
 
 async function test(_pic){
