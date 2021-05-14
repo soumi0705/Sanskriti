@@ -5,7 +5,7 @@
 #
 # The above will handle all files NOT found below
 #
-
+*.css linguist-detectable=false
 #
 ## Documents
 #
