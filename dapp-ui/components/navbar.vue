@@ -77,7 +77,7 @@ export default {
   
     _main() {
     const _this=this;
-    const urlUSDINR = 'https://api.exchangeratesapi.io/latest?symbols=USD,INR&base=USD';
+    const urlUSDINR = 'http://api.coinlayer.com/api/live?access_key=f0c71a4696b6f17724eca862af3eb752&symbols=ETH,INR';
     var xhttp = new XMLHttpRequest();        
     xhttp.onreadystatechange = function () {
       
