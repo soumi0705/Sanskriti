@@ -7,7 +7,10 @@ After you've cloned this repository. Make sure you have npm@6.14.12 and node@14.
 
 1. In the repository goto dapp-ui folder run cmd
 ```
-npm i
+cd dapp-ui
+npm install
+npm run build
+npm run start
 ```
 2. Go to folder 'others'
 ```
