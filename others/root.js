@@ -4,7 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = ""; //enter your own uri
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
-    const collection = client.db("sanksriti").collection("Users");
+    const collection = client.db("sanskriti").collection("Users");
 
     router.get("/faceID", function(req, res) {
         res.render("face");
@@ -14,6 +14,12 @@ client.connect(err => {
     });
     router.get("/register", function(req, res) {
         res.render("reg");
+    });
+    router.post("/register", function(req, res) {
+        console.log(req.body);
+        d = new Date();
+        s = d.getTime();
+        collection.insertOne({ email: req.body.email, acc: req.body.acc, tel: req.body.tel, address: req.body.address, pass: req.body.pass, time_created: s });
     });
     router.get("/payINR", function(req, res) {
         res.render("payment");
