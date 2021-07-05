@@ -1,7 +1,7 @@
 var router = require("express").Router();
 const request = require('request');
 const MongoClient = require('mongodb').MongoClient;
-const uri = ""; //enter your own uri
+const uri = "mongodb+srv://root:soumi07@cluster0.uap36.mongodb.net/sanskriti?retryWrites=true&w=majority"; //enter your own uri
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
     const collection = client.db("sanskriti").collection("Users");

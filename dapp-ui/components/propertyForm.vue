@@ -72,7 +72,10 @@ export default {
   methods: {
     postAd() {
       
-      // call metamask.postProperty
+      // call metamask.postProduct
+      if(this.price<0){
+          alert("Wrong Price Entry");
+      }
        postProduct(this.title, this.description,this.upiID, this.price)
       
     }

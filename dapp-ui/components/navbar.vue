@@ -16,7 +16,7 @@
 
     <div class="crypto" @click="binanceLink()">
       <span class="dollar" ref="refd" v-bind:style="{color:dcolor}">{{Dollar}}</span>
-      <span class="rupees" >{{Rupees}}</span>
+      <!-- <span class="rupees" >{{Rupees}}</span> -->
     </div>
     <div class="search">
       <input type="text" name="" id="" placeholder="Search">
